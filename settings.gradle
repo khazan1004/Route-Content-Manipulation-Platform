@@ -1,0 +1,7 @@
+rootProject.name = 'rcmp'
+
+include 'rcmp-component' // 组件
+include 'rcmp-component:rcmp-common' // 公共组件
+include 'rcmp-component:rcmp-spring-boot-starter-job' // 任务组件
+
+include 'rcmp-module-system' // 系统模块

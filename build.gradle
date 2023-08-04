@@ -1,0 +1,57 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/repository/public" }
+        google()
+        jcenter()
+        mavenCentral()
+    }
+    ext {
+        springBootVersion = "3.0.4"
+        lombokVersion = "1.18.24"
+    }
+    dependencies {
+        classpath("org.springframework.boot:spirng-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// 全局配置
+allprojects {
+    group = "com.khazan.rcmp"
+    version = "0.0.1-SNAPSHOT"
+}
+
+// 子项目配置
+subprojects {
+    plugins {
+        id "java"
+        id "io.spring.dependency-management"
+    }
+
+    sourceCompatibility = "17"
+    targetCompatibility = "17"
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/repository/public" }
+        google()
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+}
